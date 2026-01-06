@@ -37,8 +37,8 @@ export default function ProductList() {
         All Products
       </h3>
 
-      <div className="mb-6 flex w-full justify-between">
-        <div className="flex items-center gap-3">
+      <div className="mb-6 flex w-full flex-col-reverse gap-3 md:flex-row md:justify-between md:gap-0">
+        <div className="flex flex-col items-center gap-3 md:flex-row">
           <SortBox label="Sort product..." labelValueMap={PRODUCT_SORT_MAP} />
           <SearchBox placeholder="Search product..." />
         </div>

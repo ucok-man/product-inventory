@@ -1,18 +1,24 @@
+"use client";
+
 import StatCard from "@/components/stat-card";
 import { formatCurrency } from "@/lib/utils";
+import { api } from "@/trpc/react";
 import { GrMoney } from "react-icons/gr";
 import { LuPackagePlus } from "react-icons/lu";
 import { PiStackPlusDuotone } from "react-icons/pi";
 
 export default function ProductSummaries() {
+  const { data, error, isPending } = api.product.aggregate.useQuery();
+
   return (
-    <div className="grid grid-cols-3 gap-6">
+    <div className="grid gap-6 lg:grid-cols-3">
       <StatCard
         icon={LuPackagePlus}
         iconContainerClass="bg-primary/10"
         iconClass="size-6 text-primary"
         label="Total Products"
-        value="100"
+        value={String(data?.totalProduct ?? 0)}
+        isLoading={isPending}
       />
 
       <StatCard
@@ -20,15 +26,17 @@ export default function ProductSummaries() {
         iconContainerClass="bg-primary/10"
         iconClass="size-6 text-primary"
         label="Inventory Value"
-        value={formatCurrency(10_000_000)}
+        value={formatCurrency(data?.totalAmount ?? 0)}
+        isLoading={isPending}
       />
 
       <StatCard
         icon={PiStackPlusDuotone}
         iconContainerClass="bg-orange-500/10"
         iconClass="size-6 text-orange-500"
-        label="Total Items"
-        value="100"
+        label="Total Quantity"
+        value={String(data?.totalQty ?? 0)}
+        isLoading={isPending}
       />
     </div>
   );

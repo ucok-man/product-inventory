@@ -10,11 +10,11 @@ export const PRODUCT_TABLE_COLUMN: ColumnDef<Product>[] = [
       return (
         <Link
           href={"#"}
-          className="group flex w-fit items-center justify-start gap-2"
+          className="flex w-fit items-center justify-start gap-2"
         >
           <div>
             <h3 className="font-medium">{row.original.name}</h3>
-            <p className="text-muted-foreground truncate">
+            <p className="text-muted-foreground line-clamp-1 truncate">
               {row.original.description}
             </p>
           </div>
@@ -27,12 +27,9 @@ export const PRODUCT_TABLE_COLUMN: ColumnDef<Product>[] = [
     header: "Price",
     cell: ({ row }) => {
       return (
-        <Link
-          href={"#"}
-          className="group flex w-fit items-center justify-start gap-2"
-        >
+        <div className="flex w-fit items-center justify-start gap-2">
           {formatCurrency(row.original.amount)}
-        </Link>
+        </div>
       );
     },
   },
@@ -40,12 +37,9 @@ export const PRODUCT_TABLE_COLUMN: ColumnDef<Product>[] = [
     header: "Qty",
     cell: ({ row }) => {
       return (
-        <Link
-          href={"#"}
-          className="group flex w-fit items-center justify-start gap-2"
-        >
+        <div className="flex w-fit items-center justify-start gap-2">
           {row.original.qty}
-        </Link>
+        </div>
       );
     },
   },
@@ -55,7 +49,7 @@ export const PRODUCT_TABLE_COLUMN: ColumnDef<Product>[] = [
       return (
         <Link
           href={"#"}
-          className="group flex w-fit items-center justify-start gap-2"
+          className="flex w-fit items-center justify-start gap-2"
         >
           {/* {row.original.qty} */}
         </Link>

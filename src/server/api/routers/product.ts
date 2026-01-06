@@ -90,4 +90,25 @@ export const productRouter = createTRPCRouter({
 
       return { products, metadata };
     }),
+
+  aggregate: publicProcedure.query(async ({ ctx }) => {
+    const agg = await ctx.db.product.aggregate({
+      where: { isActive: true },
+      _count: { id: true },
+      _sum: {
+        amount: true,
+        qty: true,
+      },
+    });
+
+    const totalProduct = agg._count.id ?? 0;
+    const totalAmount = agg._sum.amount ?? 0;
+    const totalQty = agg._sum.qty ?? 0;
+
+    return {
+      totalProduct,
+      totalAmount,
+      totalQty,
+    };
+  }),
 });

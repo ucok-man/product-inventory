@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
 import {
   Select,
   SelectContent,
@@ -49,7 +47,7 @@ export default function SortBox({
     <Select value={localValue} onValueChange={handleValueChange}>
       <SelectTrigger
         className={cn(
-          "border-input focus-visible:border-input w-52 gap-2 rounded-lg border py-4 focus-visible:ring-0",
+          "border-input focus-visible:border-input w-full gap-2 rounded-lg border py-4 focus-visible:ring-0 lg:w-52",
           className,
         )}
       >

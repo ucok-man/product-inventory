@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import type { IconType } from "react-icons/lib";
+import { Skeleton } from "../ui/skeleton";
 
 type Props = {
   icon: IconType;
@@ -9,6 +10,7 @@ type Props = {
   label: string;
   value: string;
   className?: string;
+  isLoading: boolean;
 };
 
 export default function StatCard({
@@ -18,6 +20,7 @@ export default function StatCard({
   className,
   iconContainerClass,
   iconClass,
+  isLoading,
 }: Props) {
   const Icon = icon;
 
@@ -30,9 +33,14 @@ export default function StatCard({
           </div>
           <div>
             <p className="text-muted-foreground text-sm">{label}</p>
-            <p className="font-serif text-2xl font-semibold tracking-tight">
-              {value}
-            </p>
+
+            {isLoading ? (
+              <Skeleton className="my-1 h-6 w-24" />
+            ) : (
+              <p className="my-0.5 font-serif text-xl font-semibold tracking-tight lg:my-0 lg:text-2xl">
+                {value}
+              </p>
+            )}
           </div>
         </div>
       </CardContent>

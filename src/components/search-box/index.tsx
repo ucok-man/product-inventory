@@ -33,7 +33,7 @@ export default function SearchBox({ placeholder }: Props) {
   return (
     <div
       className={cn(
-        "border-input flex w-full max-w-xs items-center rounded-lg border px-3.5",
+        "border-input flex w-full items-center rounded-lg border px-3.5 lg:max-w-xs",
       )}
     >
       <SearchIcon className="text-primary size-5 shrink-0" />
