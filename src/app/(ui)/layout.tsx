@@ -1,9 +1,9 @@
 import "@/styles/globals.css";
 
-import { type Metadata } from "next";
-
 import { Toaster } from "@/components/ui/sonner";
 import { TRPCReactProvider } from "@/trpc/react";
+import { type Metadata } from "next";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 import Footer from "./_components/footer";
 import Header from "./_components/header";
 
@@ -20,15 +20,13 @@ export default function RootLayout({
     <html lang="en" className={`antialiased`}>
       <body>
         <TRPCReactProvider>
-          {/*  */}
-
-          <div className="flex size-full h-screen min-h-190 flex-col">
-            <Header />
-            <main className="flex-1">{children}</main>
-            <Footer />
-          </div>
-
-          {/*  */}
+          <NuqsAdapter>
+            <div className="flex size-full h-screen min-h-190 flex-col">
+              <Header />
+              <main className="flex-1">{children}</main>
+              <Footer />
+            </div>
+          </NuqsAdapter>
           <Toaster />
         </TRPCReactProvider>
       </body>

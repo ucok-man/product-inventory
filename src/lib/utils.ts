@@ -47,3 +47,7 @@ export const formatCurrency = (amount: number) => {
     maximumFractionDigits: 0,
   }).format(amount);
 };
+
+// export function keysFromObject(obj: Record<string, string>): string[] {
+//   return Object.keys()
+// }
