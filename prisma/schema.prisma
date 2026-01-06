@@ -2,8 +2,9 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-    provider = "prisma-client-js"
-    output   = "../generated/prisma"
+    provider        = "prisma-client"
+    output          = "../generated/prisma"
+    previewFeatures = ["fullTextSearchPostgres"]
 }
 
 datasource db {
@@ -11,11 +12,12 @@ datasource db {
 }
 
 model Product {
-    id          String   @id @default(cuid()) @db.Uuid
+    id          String   @id @default(uuid()) @db.Uuid
     name        String
     description String
     amount      Int
     qty         Int
+    isActive    Boolean  @default(true)
     createdAt   DateTime @default(now())
     updatedAt   DateTime @updatedAt
 
