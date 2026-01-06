@@ -1,3 +1,4 @@
+import { formatCurrency } from "@/lib/utils";
 import type { ColumnDef } from "@tanstack/react-table";
 import type { Product } from "generated/prisma/client";
 import Link from "next/link";
@@ -30,7 +31,7 @@ export const PRODUCT_TABLE_COLUMN: ColumnDef<Product>[] = [
           href={"#"}
           className="group flex w-fit items-center justify-start gap-2"
         >
-          {row.original.amount}
+          {formatCurrency(row.original.amount)}
         </Link>
       );
     },

@@ -10,17 +10,24 @@ type Props = {
 };
 
 export default function SearchBox({ placeholder }: Props) {
+  const [page, setPage] = useQueryState("page");
+  const [pageSize, setPageSize] = useQueryState("pageSize");
+
   const [search, setSearch] = useQueryState("search");
   const [localValue, setLocalValue] = useState(search ?? "");
   const [debounced] = useDebounceValue(localValue, 500);
 
   useEffect(() => {
     if (localValue && localValue !== search) {
-      setSearch(localValue);
+      setSearch(localValue, {});
+      setPage(null); // Reset to default (removes from URL)
+      setPageSize(null); // Reset to default (removes from URL)
     } else if (!localValue && search) {
       setSearch(null);
+      setPage(null);
+      setPageSize(null);
     }
-  }, [debounced, localValue, search, setSearch]);
+  }, [debounced]);
 
   return (
     <div

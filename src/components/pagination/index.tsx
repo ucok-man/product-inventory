@@ -14,20 +14,24 @@ import type { PropsWithChildren } from "react";
 
 type Props = {
   totalCount: number;
+  pageSizeOption: number[] | readonly number[];
+  defaultPageSize: number;
   className?: string;
 };
 
-const PAGE_SIZE_OPTIONS = [10, 20, 30, 40, 50] as const;
-const DEFAULT_PAGE_SIZE = 10;
-
-export default function Pagination({ totalCount, className }: Props) {
+export default function Pagination({
+  totalCount,
+  className,
+  pageSizeOption,
+  defaultPageSize,
+}: Props) {
   const [pageNumber, setPageNumber] = useQueryState("page", {
     defaultValue: "1",
     parse: (value) => value ?? "1",
   });
   const [pageSize, setPageSize] = useQueryState("pageSize", {
-    defaultValue: String(DEFAULT_PAGE_SIZE),
-    parse: (value) => value ?? String(DEFAULT_PAGE_SIZE),
+    defaultValue: String(defaultPageSize),
+    parse: (value) => value ?? String(defaultPageSize),
   });
 
   const currentPage = Number(pageNumber);
@@ -62,6 +66,10 @@ export default function Pagination({ totalCount, className }: Props) {
   const isFirstPage = currentPage === 1;
   const isLastPage = currentPage >= totalPages;
 
+  if (totalCount === 0) {
+    return null;
+  }
+
   return (
     <div
       className={cn(
@@ -85,7 +93,7 @@ export default function Pagination({ totalCount, className }: Props) {
               <SelectValue />
             </SelectTrigger>
             <SelectContent position="popper">
-              {PAGE_SIZE_OPTIONS.map((size) => (
+              {pageSizeOption.map((size) => (
                 <SelectItem key={size} value={String(size)}>
                   {size}
                 </SelectItem>

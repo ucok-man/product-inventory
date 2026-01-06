@@ -48,6 +48,35 @@ export const formatCurrency = (amount: number) => {
   }).format(amount);
 };
 
-// export function keysFromObject(obj: Record<string, string>): string[] {
-//   return Object.keys()
-// }
+export function parseNumberFromQuery(
+  value: string | null | undefined,
+  defaultValue?: number,
+): number | undefined {
+  // If value is null or undefined, return default
+  if (value == null) {
+    return defaultValue;
+  }
+
+  // Parse the string to a number
+  const parsed = Number(value);
+
+  // If parsing resulted in NaN, return default
+  if (isNaN(parsed)) {
+    return defaultValue;
+  }
+
+  return parsed;
+}
+
+export function parseStringFromQuery(
+  value: string | null | undefined,
+  defaultValue?: string,
+): string | undefined {
+  // If value is null or undefined, return default
+  const parsed = value?.trim();
+  if (!parsed) {
+    return defaultValue;
+  }
+
+  return parsed;
+}
