@@ -20,13 +20,14 @@ export default function SearchBox({ placeholder }: Props) {
   useEffect(() => {
     if (localValue && localValue !== search) {
       setSearch(localValue, {});
-      setPage(null); // Reset to default (removes from URL)
-      setPageSize(null); // Reset to default (removes from URL)
     } else if (!localValue && search) {
       setSearch(null);
-      setPage(null);
-      setPageSize(null);
     }
+
+    setPage(null);
+    setPageSize(null);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debounced]);
 
   return (

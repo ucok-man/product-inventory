@@ -21,7 +21,7 @@ export default function TableSkeleton({ columns, rows = 10 }: Props) {
         <TableHeader>
           <TableRow className="border-border bg-muted/50 border-b">
             {Array.from({ length: columns }).map((_, i) => (
-              <TableHead key={i} className="px-6 py-4">
+              <TableHead key={i} className="px-6 py-4.5">
                 <Skeleton className="h-4 w-full" />
               </TableHead>
             ))}
@@ -33,7 +33,7 @@ export default function TableSkeleton({ columns, rows = 10 }: Props) {
           {Array.from({ length: rows }).map((_, rowIndex) => (
             <TableRow key={rowIndex}>
               {Array.from({ length: columns }).map((_, colIndex) => (
-                <TableCell key={colIndex} className="px-6 py-4">
+                <TableCell key={colIndex} className="px-6 py-7">
                   <Skeleton className="h-4 w-full" />
                 </TableCell>
               ))}

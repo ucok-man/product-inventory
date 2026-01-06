@@ -24,6 +24,7 @@ import TableSkeleton from "./table-skeleton";
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  hasQuery: boolean;
   isLoading: boolean;
 }
 
@@ -31,6 +32,7 @@ export function DataTable<TData, TValue>({
   columns,
   data,
   isLoading,
+  hasQuery,
 }: DataTableProps<TData, TValue>) {
   const table = useReactTable({
     data,
@@ -42,12 +44,24 @@ export function DataTable<TData, TValue>({
   if (isLoading) {
     return (
       <Container>
-        <TableSkeleton columns={columns.length} />
+        <TableSkeleton columns={columns.length} rows={5} />
       </Container>
     );
   }
 
-  if (hasNoData) {
+  if (hasQuery && hasNoData) {
+    return (
+      <Container>
+        <EmptyState
+          title="No Products Found"
+          description="We couldn’t find any products that match your current filters. Try adjusting or clearing some filters."
+          className="min-h-80"
+        />
+      </Container>
+    );
+  }
+
+  if (!hasQuery && hasNoData) {
     return (
       <Container>
         <EmptyState

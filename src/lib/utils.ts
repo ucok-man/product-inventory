@@ -50,8 +50,8 @@ export const formatCurrency = (amount: number) => {
 
 export function parseNumberFromQuery(
   value: string | null | undefined,
-  defaultValue?: number,
-): number | undefined {
+  defaultValue: number,
+): number {
   // If value is null or undefined, return default
   if (value == null) {
     return defaultValue;
@@ -70,7 +70,7 @@ export function parseNumberFromQuery(
 
 export function parseStringFromQuery(
   value: string | null | undefined,
-  defaultValue?: string,
+  defaultValue: string,
 ): string | undefined {
   // If value is null or undefined, return default
   const parsed = value?.trim();
