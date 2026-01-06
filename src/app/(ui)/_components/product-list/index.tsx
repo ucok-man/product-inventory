@@ -1,6 +1,7 @@
 "use client";
 
 import { DataTable } from "@/components/data-table";
+import Pagination from "@/components/pagination";
 import SearchBox from "@/components/search-box";
 import SortBox from "@/components/sort-box";
 import { PRODUCT_SORT_MAP } from "@/lib/constants";
@@ -18,7 +19,10 @@ export default function ProductList() {
           <SearchBox placeholder="Search product..." />
           <SortBox label="Sort product..." labelValueMap={PRODUCT_SORT_MAP} />
         </div>
+
         <DataTable columns={PRODUCT_TABLE_COLUMN} data={[]} isLoading={false} />
+
+        <Pagination totalCount={100} className="mt-6" />
       </div>
     </div>
   );
