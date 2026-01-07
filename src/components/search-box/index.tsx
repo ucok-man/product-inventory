@@ -10,8 +10,8 @@ type Props = {
 };
 
 export default function SearchBox({ placeholder }: Props) {
-  const [page, setPage] = useQueryState("page");
-  const [pageSize, setPageSize] = useQueryState("pageSize");
+  const [, setPage] = useQueryState("page");
+  const [, setPageSize] = useQueryState("pageSize");
 
   const [search, setSearch] = useQueryState("search");
   const [localValue, setLocalValue] = useState(search ?? "");

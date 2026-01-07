@@ -38,7 +38,7 @@ export default function Pagination({
   className,
   isLoading,
 }: props) {
-  const [currentPage, setCurrentPage] = useQueryState("page", {
+  const [, setCurrentPage] = useQueryState("page", {
     defaultValue: String(page.current),
   });
 

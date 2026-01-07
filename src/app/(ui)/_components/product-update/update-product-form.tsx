@@ -1,9 +1,5 @@
 "use client";
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable react/no-children-prop */
-
 import { Button } from "@/components/ui/button";
 import {
   Field,

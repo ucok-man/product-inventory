@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import {
@@ -77,7 +75,6 @@ export function DataTable<TData, TValue>({
     <Container>
       <div className="overflow-x-auto">
         <Table>
-          {/* Enhanced header with theme variables */}
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup: any) => (
               <TableRow
@@ -103,7 +100,6 @@ export function DataTable<TData, TValue>({
             ))}
           </TableHeader>
 
-          {/* Professional body with theme-aware colors */}
           <TableBody className="divide-border bg-card divide-y">
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row: any) => (
