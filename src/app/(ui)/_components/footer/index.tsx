@@ -8,7 +8,7 @@ export default function Footer() {
     <footer className="border-border/70 bg-background border-t">
       <MaxWidthWrapper>
         <div className="container mx-auto px-4 py-6">
-          <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
+          <div className="flex flex-col items-center justify-between gap-3 sm:flex-row">
             <p className="text-muted-foreground text-sm">
               © {currentYear} Ucok Inc. All rights reserved.
             </p>

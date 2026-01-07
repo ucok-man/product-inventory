@@ -27,7 +27,13 @@ export default function RootLayout({
               <Footer />
             </div>
           </NuqsAdapter>
-          <Toaster />
+          <Toaster
+            toastOptions={{
+              classNames: {
+                description: "text-muted-foreground!",
+              },
+            }}
+          />
         </TRPCReactProvider>
       </body>
     </html>
