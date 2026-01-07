@@ -29,6 +29,10 @@ export default function ProductList() {
     sortBy,
   });
 
+  if (error) {
+    throw new Error(error.message);
+  }
+
   return (
     <div className="mt-9 w-full space-y-6">
       <h3 className="font-serif text-xl font-semibold tracking-tight">
