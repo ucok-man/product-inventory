@@ -5,12 +5,11 @@ import { DataTable } from "@/components/data-table";
 import Pagination from "@/components/pagination";
 import SearchBox from "@/components/search-box";
 import SortBox from "@/components/sort-box";
-import { Button } from "@/components/ui/button";
 import { PAGE_SIZE_OPTIONS, PRODUCT_SORT_MAP } from "@/lib/constants";
 import { parseNumberFromQuery, parseStringFromQuery } from "@/lib/utils";
 import { api } from "@/trpc/react";
-import { Plus } from "lucide-react";
 import { useSearchParams } from "next/navigation";
+import { ProductNew } from "../product-new";
 import { PRODUCT_TABLE_COLUMN } from "./product-table-column";
 
 export default function ProductList() {
@@ -42,9 +41,8 @@ export default function ProductList() {
           <SortBox label="Sort product..." labelValueMap={PRODUCT_SORT_MAP} />
           <SearchBox placeholder="Search product..." />
         </div>
-        <Button className="min-w-28 rounded-lg">
-          <Plus /> <span>Add New</span>
-        </Button>
+
+        <ProductNew />
       </div>
 
       <DataTable
