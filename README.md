@@ -6,7 +6,7 @@ A modern, full-stack CRUD application for managing product inventory.
 
 ## 🚀 Live Demo
 
-- **Live Application**: [Your Vercel Deployment URL]
+- **Live Application**: [https://antariks-test-product-inventory.vercel.app](https://antariks-test-product-inventory.vercel.app/)
 
 ## 📋 Table of Contents
 
