@@ -4,13 +4,9 @@
 
 A modern, full-stack CRUD application for managing product inventory.
 
----
-
 ## 🚀 Live Demo
 
 - **Live Application**: [Your Vercel Deployment URL]
-
----
 
 ## 📋 Table of Contents
 
@@ -20,8 +16,6 @@ A modern, full-stack CRUD application for managing product inventory.
 - [Installation & Setup](#-installation--setup)
 - [Project Structure](#-project-structure)
 - [Design Decisions](#-design-decisions)
-
----
 
 ## 🛠 Tech Stack
 
@@ -45,8 +39,6 @@ A modern, full-stack CRUD application for managing product inventory.
 - **nuqs** - Type-safe URL search params state management
 - **usehooks-ts** - Collection of useful React hooks
 
----
-
 ## ✨ Features
 
 - **CRUD** - Add, update, read and delete products with validation
@@ -54,8 +46,6 @@ A modern, full-stack CRUD application for managing product inventory.
 - **Sorting Filter** - Sort by name, price, stock, or date (ascending/descending)
 - **Pagination** - Paginate data in table list
 - **Responsive Design** - Optimized for desktop, tablet, and mobile devices
-
----
 
 ## 🔒 Security & Validation
 
@@ -108,8 +98,6 @@ All inputs are validated using Zod schemas on both client and server sides, ensu
 
 - Next.js built-in CSRF protection
 - Same-origin policy enforced
-
----
 
 ## 💻 Installation & Setup
 
@@ -182,8 +170,6 @@ npm run build
 npm start
 ```
 
----
-
 ## 📁 Project Structure
 
 ```
@@ -216,8 +202,6 @@ product-inventory/
 │   └── trpc/                # tRPC client configuration
 ```
 
----
-
 ## 🎨 Design Decisions
 
 ### UI/UX Choices
@@ -247,12 +231,6 @@ product-inventory/
 
 - **Purpose**: Non-intrusive success/error feedback
 - **Reasoning**: Doesn't block user workflow, automatically dismisses
-
-#### **6. Currency Formatting**
-
-- **Display**: Formatted with thousand separators (Rp 1.500.000)
-- **Input**: Real-time formatting as user types
-- **Reasoning**: Improves readability and data entry accuracy
 
 ### Architecture Choices
 
