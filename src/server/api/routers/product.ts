@@ -1,7 +1,9 @@
 import { z } from "zod";
 
+import { createProductSchema, updateProductSchema } from "@/lib/schemas";
 import { calculateMetadata, parseSortBy } from "@/lib/utils";
 import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
+import { TRPCError } from "@trpc/server";
 
 const PRODUCT_SORT_LIST = [
   "name",
@@ -111,4 +113,100 @@ export const productRouter = createTRPCRouter({
       totalQty,
     };
   }),
+
+  create: publicProcedure
+    .input(createProductSchema)
+    .mutation(async ({ ctx, input }) => {
+      const duplicate = await ctx.db.product.findUnique({
+        where: {
+          name: input.name,
+          isActive: true,
+        },
+      });
+      if (duplicate) {
+        throw new TRPCError({
+          code: "BAD_REQUEST",
+          message: `Product with name ${input.name} already exist`,
+        });
+      }
+
+      const product = await ctx.db.product.create({
+        data: {
+          name: input.name,
+          description: input.description,
+          amount: input.amount,
+          qty: input.qty,
+        },
+      });
+      return product;
+    }),
+
+  update: publicProcedure
+    .input(updateProductSchema)
+    .mutation(async ({ ctx, input }) => {
+      const existing = await ctx.db.product.findUnique({
+        where: {
+          id: input.id,
+          isActive: true,
+        },
+      });
+
+      if (!existing) {
+        throw new TRPCError({
+          code: "NOT_FOUND",
+          message: `No product found for id #${input.id}`,
+        });
+      }
+
+      if (input.name && input.name !== existing.name) {
+        const duplicate = await ctx.db.product.findUnique({
+          where: {
+            name: input.name,
+            isActive: true,
+          },
+        });
+        if (duplicate) {
+          throw new TRPCError({
+            code: "BAD_REQUEST",
+            message: `Product with name ${input.name} already exist`,
+          });
+        }
+      }
+
+      return await ctx.db.product.update({
+        where: { id: existing.id },
+        data: {
+          name: input.name ?? undefined,
+          description: input.description ?? undefined,
+          amount: input.amount ?? undefined,
+          qty: input.qty ?? undefined,
+        },
+      });
+    }),
+
+  delete: publicProcedure
+    .input(
+      z.object({
+        id: z.string().uuid(),
+      }),
+    )
+    .mutation(async ({ ctx, input }) => {
+      const product = await ctx.db.product.findUnique({
+        where: {
+          id: input.id,
+        },
+      });
+
+      if (!product) {
+        throw new TRPCError({
+          code: "NOT_FOUND",
+          message: `No product found for id #${input.id}`,
+        });
+      }
+
+      return await ctx.db.product.update({
+        where: { id: product.id },
+        data: { isActive: false },
+      });
+    }),
 });

@@ -80,3 +80,12 @@ export function parseStringFromQuery(
 
   return parsed;
 }
+
+export const formatNumber = (value: string): string => {
+  const num = value.replace(/\D/g, "");
+  return num.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+};
+
+export const parseFormattedNumber = (value: string): number => {
+  return parseInt(value.replace(/\D/g, "") || "0", 10);
+};
