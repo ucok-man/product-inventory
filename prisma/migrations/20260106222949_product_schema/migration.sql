@@ -1,10 +1,13 @@
+CREATE EXTENSION IF NOT EXISTS citext;
+
 -- CreateTable
 CREATE TABLE "Product" (
     "id" UUID NOT NULL,
-    "name" TEXT NOT NULL,
+    "name" CITEXT NOT NULL,
     "description" TEXT NOT NULL,
     "amount" INTEGER NOT NULL,
     "qty" INTEGER NOT NULL,
+    "isActive" BOOLEAN NOT NULL DEFAULT true,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -12,4 +15,4 @@ CREATE TABLE "Product" (
 );
 
 -- CreateIndex
-CREATE INDEX "Product_name_idx" ON "Product"("name");
+CREATE UNIQUE INDEX "Product_name_key" ON "Product"("name");

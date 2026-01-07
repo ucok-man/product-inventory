@@ -22,7 +22,7 @@ const config: runtime.GetPrismaClientConfig = {
   "clientVersion": "7.2.0",
   "engineVersion": "0c8ef2ce45c83248ab3df073180d5eda9e8be7a3",
   "activeProvider": "postgresql",
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\ngenerator client {\n  provider        = \"prisma-client\"\n  output          = \"../generated/prisma\"\n  previewFeatures = [\"fullTextSearchPostgres\"]\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nmodel Product {\n  id          String   @id @default(uuid()) @db.Uuid\n  name        String\n  description String\n  amount      Int\n  qty         Int\n  isActive    Boolean  @default(true)\n  createdAt   DateTime @default(now())\n  updatedAt   DateTime @updatedAt\n\n  @@index([name])\n}\n",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\ngenerator client {\n  provider        = \"prisma-client\"\n  output          = \"../generated/prisma\"\n  previewFeatures = [\"fullTextSearchPostgres\"]\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nmodel Product {\n  id          String   @id @default(uuid()) @db.Uuid\n  name        String   @unique\n  description String\n  amount      Int\n  qty         Int\n  isActive    Boolean  @default(true)\n  createdAt   DateTime @default(now())\n  updatedAt   DateTime @updatedAt\n}\n",
   "runtimeDataModel": {
     "models": {},
     "enums": {},

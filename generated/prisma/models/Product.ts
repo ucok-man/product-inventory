@@ -260,17 +260,17 @@ export type ProductOrderByWithRelationInput = {
 
 export type ProductWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  name?: string
   AND?: Prisma.ProductWhereInput | Prisma.ProductWhereInput[]
   OR?: Prisma.ProductWhereInput[]
   NOT?: Prisma.ProductWhereInput | Prisma.ProductWhereInput[]
-  name?: Prisma.StringFilter<"Product"> | string
   description?: Prisma.StringFilter<"Product"> | string
   amount?: Prisma.IntFilter<"Product"> | number
   qty?: Prisma.IntFilter<"Product"> | number
   isActive?: Prisma.BoolFilter<"Product"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Product"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Product"> | Date | string
-}, "id">
+}, "id" | "name">
 
 export type ProductOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
